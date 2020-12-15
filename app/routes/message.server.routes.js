@@ -4,15 +4,15 @@ let express = require('express')
 let router = express.Router()
 
 const message = require('../controllers/message.server.controller');
-const serviceHealth = require('../controllers/health.server.controller');
 
 const Palindrome = require('../middleware/palindrome');
+const monitoring = require('../middleware/monitoring');
 
-router.get('/messages', message.getMessages)
-router.post('/messages/', [Palindrome], message.postMessage)
-router.get('/messages/:id', message.getSingleMessage)
-router.delete('/messages/:id', message.deleteMessage)
+router.get('/messages', [monitoring], message.getMessages, [monitoring])
+router.post('/messages/', [monitoring, Palindrome], message.postMessage, [monitoring])
+router.get('/messages/:id', [monitoring], message.getSingleMessage, [monitoring])
+router.delete('/messages/:id', [monitoring], message.deleteMessage, [monitoring])
 
-router.get('/health', serviceHealth.isHealthy)
+router.get('/health', [monitoring])
 
 module.exports = router
