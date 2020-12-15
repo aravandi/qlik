@@ -1,12 +1,15 @@
-const Datastore = require('nedb')
-const db = new Datastore()
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const Messages = new Schema ({
+		text: { type: String, required: true },
+		is_palindrome: {type: Boolean}
+});
+
+const db = mongoose.model('Messages', Messages)
 
 class Message {
 	constructor() {
-		db.ensureIndex({ fieldName: 'text', unique: true }, function (err) {
-			if (err)
-				console.log(err)
-		})
 	}
 
 	find() {
@@ -22,15 +25,11 @@ class Message {
 	}
 
 	remove(id,callback) {
-		return db.remove({ _id: id },{}, callback)
+		return db.deleteOne({ _id: id },callback)
 	}
 
 	insert(data) {
-		return db.insert(data, (err, newDoc) => {
-			if (err)
-				return err
-			return newDoc
-		})
+		return db.create(data)
 	}
 }
 
