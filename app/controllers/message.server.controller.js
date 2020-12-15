@@ -31,9 +31,9 @@ exports.getSingleMessage = function (req, res) {
     });
 };
 
-exports.postMessage = function (req, res) {
+exports.postMessage = async function (req, res) {
     console.log(req.body)
-    let savedMessage = model.insert(req.body)
+    let savedMessage = await model.insert(req.body)
     if (_.isError(savedMessage)) {
         res.status(500).send({
             message: 'Database error saving new message.'
