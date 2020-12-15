@@ -14,6 +14,6 @@ ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 RUN rm -rf /usr/local/lib/node_modules/npm/ /usr/local/bin/npm
 
 USER 65001:65001
-EXPOSE 9091
+EXPOSE 9090
 
 CMD ["node", "--use-openssl-ca", "server.js"]
