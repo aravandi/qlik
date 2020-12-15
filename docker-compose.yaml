@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+  qlik:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 9090:9090
+    tty: true
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    volumes:
+      - ${PWD}:/app
+    networks:
+      - shared
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 32794:27017
+    volumes: 
+        - ./config/mongodb-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - shared
+networks:
+  shared:
+    external:
+      name: shared        
