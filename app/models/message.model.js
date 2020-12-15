@@ -14,15 +14,15 @@ class Message {
 	}
 
 	findById(id) {
-		return db.find({ _id: id })
+		return db.findOne({ _id: id })
 	}
 
 	save(id, update) {
 		return db.update({ _id: id }, update, {})
 	}
 
-	remove(id) {
-		return db.remove({ _id: id })
+	remove(id,callback) {
+		return db.remove({ _id: id },{}, callback)
 	}
 
 	insert(data) {
