@@ -14,7 +14,7 @@ class Message {
 	}
 
 	findById(id) {
-		return db.find({ _id: id })
+		return db.findOne({ _id: id })
 	}
 
 	save(id, update) {
