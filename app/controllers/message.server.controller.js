@@ -55,7 +55,7 @@ exports.deleteMessage = function (req, res) {
                 return;
             }
 
-            message.remove(function (err, removedMessage) {
+            model.remove(message._id, function (err, removedMessage) {
                 if (err) {
                     res.status(500).send({
                         message: 'Database error deleting message.'

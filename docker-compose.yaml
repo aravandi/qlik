@@ -1,0 +1,10 @@
+version: '3.5'
+services:
+  qlik:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 9090:9090
+    tty: true
+    volumes:
+      - ${PWD}:/app

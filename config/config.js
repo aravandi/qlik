@@ -21,5 +21,5 @@ module.exports = _.extend( {
 		useUnifiedTopology: true,
 	},
 	ip: process.env.IP || '127.0.0.1',
-	port: process.env.PORT || 9091
+	port: process.env.PORT || 9090
 });

@@ -1,7 +1,7 @@
 const config = require('./config/config')
 
 // Init the express application
-const app = require('./config/config/express')()
+const app = require('./config/express')()
 
 // Start the app by listening on <port>
 app.listen(config.port)
